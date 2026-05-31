@@ -1,0 +1,102 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 4rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid transparent;
+  transition: all var(--transition);
+}
+
+.navbar--dark {
+  background: rgba(10, 10, 10, 0.95);
+  border-bottom-color: var(--border);
+}
+
+.navbar--light {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: var(--border-light);
+}
+
+.navbar__logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+  color: var(--dark);
+}
+
+.navbar--dark .navbar__logo { color: var(--text); }
+
+.navbar__logo span { color: var(--gold); }
+
+.navbar__links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.navbar__links a {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.navbar__links a:hover { color: var(--gold); }
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navbar__user {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-right: 0.5rem;
+}
+
+/* Botones globales */
+.btn {
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  transition: all var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn--primary {
+  background: var(--gold);
+  color: #000;
+}
+.btn--primary:hover { background: var(--gold-dark); }
+
+.btn--outline {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+.btn--outline:hover { background: var(--gold); color: #000; }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+}
+.btn--ghost:hover { border-color: rgba(0,0,0,0.15); color: var(--dark); }
+
+.navbar--dark .btn--ghost { color: var(--text-muted); }
+.navbar--dark .btn--ghost:hover { border-color: var(--border); color: var(--text); }
+
+@media (max-width: 768px) {
+  .navbar { padding: 1rem 1.5rem; }
+  .navbar__links { display: none; }
+}
