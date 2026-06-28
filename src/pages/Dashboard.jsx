@@ -7,9 +7,9 @@ import './Dashboard.css';
 const TABS = ['Inicio', 'Wallet', 'Contenedores', 'Pedidos', 'Inversiones'];
 
 // ⚠️ RECOMENDACIÓN: Mueve estas llaves a un archivo .env (ej: import.meta.env.VITE_MAPS_KEY)
-const MAPS_KEY = 'borrado';
+const MAPS_KEY = 'AIzaSyAeBLqmYQevHJB1BVllpOD6WGViR4-JXCY';
 // Asegúrate de que esta clave empiece con "AIzaSy..." generada desde Google AI Studio
-const GEMINI_KEY = 'borrado'; 
+const GEMINI_KEY = 'AQ.Ab8RN6JVYfa3R7-MYNcpGR4RFHqGLP-y-50LM2WBgFaCZ1x3Ig'; 
 
 export default function Dashboard() {
   const { user } = useAuth();

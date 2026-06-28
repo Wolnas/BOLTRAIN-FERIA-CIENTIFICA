@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import Globe from './Globe';
 import './Navbar.css';
 
 export default function Navbar({ dark = false }) {
@@ -15,12 +16,13 @@ export default function Navbar({ dark = false }) {
   return (
     <nav className={`navbar ${dark ? 'navbar--dark' : 'navbar--light'}`}>
       <Link to="/" className="navbar__logo">
-        BOLT<span>RAIN</span>
+        <Globe size={32} speed={10} />
+        BOL<span>TRAIN</span>
       </Link>
       <ul className="navbar__links">
         <li><Link to="/#how">Cómo funciona</Link></li>
-        <li><Link to="/#nodes">Nodos</Link></li>
-        <li><Link to="/#invest">Inversores</Link></li>
+        <li><Link to="/#track">Rastrear</Link></li>
+        <li><Link to="/#coverage">Cobertura</Link></li>
       </ul>
       <div className="navbar__actions">
         {user ? (

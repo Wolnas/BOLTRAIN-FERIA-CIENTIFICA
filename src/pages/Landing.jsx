@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/common/Navbar';
+import Globe from '../components/common/Globe';
 import './Landing.css';
 
 export default function Landing() {
@@ -9,21 +10,31 @@ export default function Landing() {
       <Navbar dark={true} />
       <main>
         <section className="hero">
-          <div className="hero__tag">Comercio internacional descentralizado · Bolivia</div>
-          <h1>El mercado global al alcance del <span>productor boliviano</span></h1>
-          <p className="hero__sub">
-            Conectamos capital internacional con la materia prima boliviana,
-            sin bancos intermediarios, usando blockchain y nodos globales.
-          </p>
-          <div className="hero__ctas">
-            <Link to="/register" className="btn btn--primary btn--lg">Registrarme ahora</Link>
-            <Link to="/register?type=inversor" className="btn btn--outline btn--lg">Soy inversor</Link>
+          <div className="hero__content">
+            <div className="hero__tag">Exportación e importación · Bolivia y el mundo</div>
+            <h1>Exportación e importación a nivel <span>nacional e internacional</span></h1>
+            <p className="hero__sub">
+              Gestioná y rastreá tus envíos en tiempo real, desde el despacho
+              hasta la entrega. Controlá cada paquete y operación desde tu celular.
+            </p>
+            <div className="hero__ctas">
+              <Link to="/register" className="btn btn--primary btn--lg">Rastrear mi envío</Link>
+              <Link to="/register?type=comercio" className="btn btn--outline btn--lg">Soy comercio</Link>
+            </div>
+            <div className="hero__stats">
+              <div className="hero-stat"><span>Tiempo real</span><p>seguimiento de cada envío</p></div>
+              <div className="hero-stat"><span>Nacional</span><p>y alcance internacional</p></div>
+              <div className="hero-stat"><span>24/7</span><p>control desde tu celular</p></div>
+              <div className="hero-stat"><span>Aduana</span><p>gestión simplificada</p></div>
+            </div>
           </div>
-          <div className="hero__stats">
-            <div className="hero-stat"><span>0%</span><p>comisiones bancarias</p></div>
-            <div className="hero-stat"><span>3</span><p>nodos internacionales</p></div>
-            <div className="hero-stat"><span>USDT</span><p>moneda de operacion</p></div>
-            <div className="hero-stat"><span>100%</span><p>transparencia on-chain</p></div>
+
+          <div className="hero__brand">
+            <Globe size={340} speed={16} />
+            <div className="hero__wordmark">
+              BOL<span>TRAIN</span>
+              <small>International Trade</small>
+            </div>
           </div>
         </section>
       </main>

@@ -18,4 +18,4 @@ app.include_router(pedido.router)
 
 @app.get("/")
 def root():
-    return {"message": "BOLTRAIN API corriendo"}
+    return {"message": "BOLTRAIN API corriendo"}    
