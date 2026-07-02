@@ -42,7 +42,7 @@ export default function Dashboard() {
         <div className="dashboard__header">
           <div>
             <h1>Bienvenido, <span>{user?.nombre}</span></h1>
-            <p>{esAdmin ? 'Panel de administrador' : 'Panel del cliente'} — {user?.tipo_usuario}</p>
+            <p>{esAdmin ? `Panel de administrador ${user?.tipo_usuario || ''}` : 'Panel del cliente'}</p>
           </div>
         </div>
 

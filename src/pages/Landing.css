@@ -1,11 +1,15 @@
+/* Fondo oscuro en toda la página del landing (evita el blanco de fondo). */
+.page-wrapper { background: var(--dark); }
+
 .hero {
-  min-height: 90vh;
+  /* Llena la pantalla bajo la navbar (70px) para que no quede blanco abajo. */
+  min-height: calc(100vh - 70px);
   background: var(--dark);
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
   gap: 3rem;
-  padding: 5rem 4rem 4rem;
+  padding: 4rem 4rem;
   position: relative;
   overflow: hidden;
 }
