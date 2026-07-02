@@ -1,0 +1,51 @@
+/* Animaciones de la pantalla de rastreo del cliente. */
+@keyframes bt-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(212,175,55, 0.55); }
+  70%  { box-shadow: 0 0 0 14px rgba(212,175,55, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(212,175,55, 0); }
+}
+@keyframes bt-truck {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+@keyframes bt-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.bt-track { display: flex; flex-direction: column; gap: 20px; }
+
+/* Timeline de estados */
+.bt-timeline { display: flex; align-items: flex-start; position: relative; }
+.bt-step { flex: 1; text-align: center; position: relative; }
+.bt-step__dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  margin: 0 auto 10px;
+  background: #1c1c1c; border: 2px solid #444;
+  transition: all .4s ease;
+}
+.bt-step.done .bt-step__dot { background: #C9A227; border-color: #C9A227; color: #000; }
+.bt-step.active .bt-step__dot {
+  background: #D4AF37; border-color: #D4AF37; color: #000;
+  animation: bt-pulse 1.6s infinite;
+}
+.bt-step__label { font-size: 12px; color: #8A8A8A; transition: color .4s ease; }
+.bt-step.done .bt-step__label, .bt-step.active .bt-step__label { color: #F5F5F5; }
+/* línea conectora */
+.bt-step::before {
+  content: ''; position: absolute; top: 8px; left: -50%; width: 100%; height: 2px;
+  background: #333; z-index: 0; transition: background .5s ease;
+}
+.bt-step:first-child::before { display: none; }
+.bt-step.done::before, .bt-step.active::before { background: #C9A227; }
+.bt-step__dot { position: relative; z-index: 1; }
+
+.bt-moving {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(212,175,55,.12); border: 1px solid #D4AF37; color: #D4AF37;
+  border-radius: 20px; padding: 4px 14px; font-size: 13px; font-weight: 600;
+}
+.bt-moving .bt-truck { animation: bt-truck 1s infinite; }
+
+.bt-hist-item { animation: bt-fade-up .4s ease both; }

@@ -26,15 +26,21 @@ class RutaResponse(BaseModel):
         from_attributes = True
 
 class SolicitudCreate(BaseModel):
-    categoria_id:           int
-    ruta_id:                Optional[int]
-    origen_personalizado:   Optional[str]
-    destino_personalizado:  Optional[str]
-    tipo_ruta:              TipoRuta
-    peso_kg:                Optional[float]
-    volumen_m3:             Optional[float]
-    cantidad_unidades:      Optional[int]
-    descripcion_carga:      Optional[str]
+    categoria_id:           Optional[int] = None
+    ruta_id:                Optional[int] = None
+    origen_personalizado:   Optional[str] = None
+    destino_personalizado:  Optional[str] = None
+    tipo_ruta:              TipoRuta = TipoRuta.personalizada
+    ambito:                 Optional[str] = "nacional"   # 'nacional' | 'internacional'
+    es_prioritario:         Optional[bool] = False       # el cliente marca prioridad
+    # Datos de destino que indica el cliente (a donde ira el pedido).
+    destino_departamento:   Optional[str] = None
+    destino_ciudad:         Optional[str] = None
+    destino_direccion:      Optional[str] = None
+    peso_kg:                Optional[float] = None
+    volumen_m3:             Optional[float] = None
+    cantidad_unidades:      Optional[int] = None
+    descripcion_carga:      Optional[str] = None
     requiere_refrigeracion: Optional[bool] = False
     carga_fragil:           Optional[bool] = False
     carga_peligrosa:        Optional[bool] = False

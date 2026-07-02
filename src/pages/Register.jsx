@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import AdminRequestForm from '../components/AdminRequestForm';
 import './Auth.css';
 
 const USER_TYPES = [
-  { value: 'importador', label: 'Importador', desc: 'Quiero importar productos a Bolivia' },
-  { value: 'exportador', label: 'Exportador / Productor', desc: 'Tengo productos para exportar' },
-  { value: 'inversor', label: 'Inversor', desc: 'Quiero invertir en produccion boliviana' },
-  { value: 'tecnico', label: 'Tecnico de Puerto', desc: 'Gestiono contenedores y carga' },
+  { value: 'cliente', label: 'Cliente', desc: 'Quiero crear y rastrear mis envios' },
+  { value: 'transportista', label: 'Transportista', desc: 'Soy chofer y transporto pedidos' },
 ];
 
 export default function Register() {
@@ -23,11 +22,13 @@ export default function Register() {
     telefono: '',
     pais: 'Bolivia',
     empresa: '',
+    codigo_empresa: '',
     password: '',
     password_confirm: '',
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [mostrarAdmin, setMostrarAdmin] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -177,6 +178,13 @@ export default function Register() {
                     <input name="empresa" value={form.empresa} onChange={handleChange} placeholder="Mi Empresa S.R.L." />
                   </div>
                 </div>
+                {form.tipo_usuario === 'transportista' && (
+                  <div className="field">
+                    <label>Código de empresa (opcional)</label>
+                    <input name="codigo_empresa" value={form.codigo_empresa} onChange={handleChange}
+                           placeholder="BT-EMP-XXXX — déjalo vacío para registro libre" />
+                  </div>
+                )}
               </div>
             )}
 
@@ -215,8 +223,18 @@ export default function Register() {
           <p className="auth-switch">
             Ya tienes cuenta? <Link to="/login">Inicia sesion</Link>
           </p>
+          <p className="auth-switch">
+            ¿Eres empresa?{' '}
+            <button type="button" className="auth-linklike"
+                    onClick={() => setMostrarAdmin(true)}
+                    style={{ background: 'none', border: 'none', color: '#D4AF37', cursor: 'pointer', textDecoration: 'underline', padding: 0, font: 'inherit' }}>
+              Solicita tu código de administrador
+            </button>
+          </p>
         </div>
       </div>
+
+      {mostrarAdmin && <AdminRequestForm onClose={() => setMostrarAdmin(false)} />}
     </div>
   );
 }

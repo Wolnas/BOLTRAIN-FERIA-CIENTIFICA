@@ -12,14 +12,13 @@ export default function Landing() {
         <section className="hero">
           <div className="hero__content">
             <div className="hero__tag">Exportación e importación · Bolivia y el mundo</div>
-            <h1>Exportación e importación a nivel <span>nacional e internacional</span></h1>
+            <h1>BOLIVIA <span>para el mundo</span></h1>
             <p className="hero__sub">
-              Gestioná y rastreá tus envíos en tiempo real, desde el despacho
-              hasta la entrega. Controlá cada paquete y operación desde tu celular.
+              Gestioná y seguí tus envíos, desde el despacho hasta la entrega.
+              Controlá cada paquete y operación desde tu celular.
             </p>
             <div className="hero__ctas">
-              <Link to="/register" className="btn btn--primary btn--lg">Rastrear mi envío</Link>
-              <Link to="/register?type=comercio" className="btn btn--outline btn--lg">Soy comercio</Link>
+              <Link to="/dashboard" className="btn btn--primary btn--lg">Mis pedidos</Link>
             </div>
             <div className="hero__stats">
               <div className="hero-stat"><span>Tiempo real</span><p>seguimiento de cada envío</p></div>

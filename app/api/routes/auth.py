@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from app.api.deps import get_db
 from app.models.usuario import Usuario
+from app.models.empresa import Empresa
 from app.schemas.usuario import UsuarioRegistro, UsuarioLogin, UsuarioResponse
 from app.core.security import hash_password, verify_password, create_access_token
 
@@ -12,6 +13,19 @@ def register(data: UsuarioRegistro, db: Session = Depends(get_db)):
     existing = db.query(Usuario).filter(Usuario.email == data.email).first()
     if existing:
         raise HTTPException(status_code=400, detail="El email ya esta registrado")
+
+    # #7: si el chofer ingresa un codigo de empresa, se une a ella; si no, 'libre'.
+    empresa_id = None
+    empresa_nombre = data.empresa
+    codigo = (data.codigo_empresa or "").strip()
+    if codigo:
+        empresa = db.query(Empresa).filter(Empresa.codigo == codigo).first()
+        if not empresa:
+            raise HTTPException(status_code=400,
+                                detail="Codigo de empresa invalido")
+        empresa_id = empresa.id
+        empresa_nombre = empresa.nombre
+
     user = Usuario(
         tipo_usuario  = data.tipo_usuario,
         nombre        = data.nombre,
@@ -19,7 +33,8 @@ def register(data: UsuarioRegistro, db: Session = Depends(get_db)):
         email         = data.email,
         telefono      = data.telefono,
         pais          = data.pais,
-        empresa       = data.empresa,
+        empresa       = empresa_nombre,
+        empresa_id    = empresa_id,
         password_hash = hash_password(data.password),
     )
     db.add(user)

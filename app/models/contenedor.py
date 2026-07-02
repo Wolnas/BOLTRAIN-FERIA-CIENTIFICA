@@ -37,6 +37,8 @@ class SolicitudCotizacion(Base):
     carga_fragil            = Column(Boolean, default=False)
     carga_peligrosa         = Column(Boolean, default=False)
     estado                  = Column(Enum('pendiente','en_revision','cotizado','aceptado','rechazado'), default='pendiente')
+    ambito                  = Column(Enum('nacional','internacional'), default='nacional')
+    prioridad               = Column(Integer, default=0)  # para la cola de prioridad
     precio_estimado         = Column(DECIMAL(12,2))
     notas_tecnico           = Column(Text)
     creado_en               = Column(DateTime, server_default=func.now())
